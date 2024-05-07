@@ -1,13 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[ ]:
-
+#!/usr/bin/env python3
 
 '''pa6 functions for homework 6'''
-
-
-# In[1]:
 
 
 def make_change(total):
@@ -33,9 +26,6 @@ result = make_change(total_amount)
 print("Distinct combinations of coins for", total_amount, "cents:", result)
 
 
-# In[2]:
-
-
 def dict_filter(func, dictionary):
     '''Filter a dictionary based on a given function.'''
     filtered_dict = {}
@@ -54,15 +44,6 @@ result = dict_filter(checker, example)
 print(result)
 
 
-# In[ ]:
-
-
-
-
-
-# In[3]:
-
-
 class KVTree:
     def __init__(self, key, value):
         self.key = key
@@ -72,14 +53,17 @@ class KVTree:
     def add_child(self, child):
         self.children.append(child)
 
+
 def treemap(func, tree):
     '''Modify a tree according to the provided function.'''
     tree.key, tree.value = func(tree.key, tree.value)
     for child in tree.children:
         treemap(func, child)
 
+
 def update_node(key, value):
     return key.upper(), value * 1000000
+
 
 samplekv = KVTree("us", 4.6)
 pa = KVTree("pa", 1.9)
@@ -92,21 +76,13 @@ il.add_child(KVTree("Chicago", 2.7))
 
 treemap(update_node, samplekv)
 
+
 def print_tree(tree):
     print(f"Key: {tree.key}, Value: {tree.value}")
     for child in tree.children:
         print_tree(child)
 
 print_tree(samplekv)
-
-
-# In[ ]:
-
-
-
-
-
-# In[4]:
 
 
 class DTree:
@@ -123,12 +99,14 @@ class DTree:
         else:
             raise ValueError("Invalid inputs")
 
+
     def tuple_atleast(self):
         '''Analyze the tree and determine the minimum size of tuples needed.'''
         if self.variable is not None:
             return max(self.variable + 1, self.lessequal.tuple_atleast(), self.greater.tuple_atleast())
         else:
             return 0
+
 
     def find_outcome(self, observations):
         '''Navigate through the tree to find the outcome based on the observations.'''
@@ -138,6 +116,7 @@ class DTree:
             return self.lessequal.find_outcome(observations)
         else:
             return self.greater.find_outcome(observations)
+
 
     def no_repeats(self):
         '''Analyze the tree and determine if there are no repeats.'''
@@ -149,7 +128,6 @@ class DTree:
             else:
                 seen.add(node.variable)
                 return helper(node.lessequal, seen) and helper(node.greater, seen)
-
         return helper(self, set())
 
 
@@ -170,10 +148,3 @@ print("Outcome for observations in tree2:", tree2.find_outcome(observations))
 
 print("No repeats in tree1:", tree1.no_repeats())
 print("No repeats in tree2:", tree2.no_repeats())
-
-
-# In[ ]:
-
-
-
-
