@@ -94,6 +94,7 @@ print_tree(SAMPLEKV)
 
 
 class DTree:
+    '''Tree information and functions'''
     def __init__(self, variable, threshold, lessequal,
                  greater, outcome):
         if (variable is not None and threshold is not None and
