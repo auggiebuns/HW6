@@ -95,8 +95,8 @@ class DTree:
             lessequal is not None and greater
             is not None and outcome is None) or \
            (variable is None and threshold is None and
-            lessequal is None and greater is None and outcome
-            is not None):
+            lessequal is None and
+            greater is None and outcome is not None):
             self.variable = variable
             self.threshold = threshold
             self.lessequal = lessequal
@@ -106,17 +106,17 @@ class DTree:
             raise ValueError("Invalid inputs")
 
     def tuple_atleast(self):
-        '''Analyze the tree and determine the 
+        '''Analyze the tree and determine the
         minimum size of tuples needed.'''
         if self.variable is not None:
-            return max(self.variable + 1, 
+            return max(self.variable + 1,
                        self.lessequal.tuple_atleast(),
                        self.greater.tuple_atleast())
         else:
             return 0
 
     def find_outcome(self, observations):
-        '''Navigate through the tree to find 
+        '''Navigate through the tree to find
         the outcome based on the observations.'''
         if self.variable is None:
             return self.outcome
