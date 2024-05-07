@@ -37,6 +37,7 @@ def dict_filter(func, dictionary):
 
 
 def checker(name, abbrev):
+    '''checks each letter in the string'''
     return abbrev[0] == "I" and name[1] == "l"
 
 
@@ -47,12 +48,14 @@ print(RESULT2)
 
 
 class KVTree:
+    '''tree for countries, states, cities, and their populations'''
     def __init__(self, key, value):
         self.key = key
         self.value = value
         self.children = []
 
     def add_child(self, child):
+        '''adding a child'''
         self.children.append(child)
 
 
@@ -64,22 +67,24 @@ def treemap(func, tree):
 
 
 def update_node(key, value):
+    '''updates the node'''
     return key.upper(), value * 1000000
 
 
 SAMPLEKV = KVTree("us", 4.6)
 PENN = KVTree("pa", 1.9)
-SAMPLEKV.add_child(pa)
+SAMPLEKV.add_child(PENN)
 PENN.add_child(KVTree("Pittsburgh", 0.3))
 PENN.add_child(KVTree("Philadelphia", 1.6))
 ILL = KVTree("il", 2.7)
-samplekv.add_child(il)
+SAMPLEKV.add_child(ILL)
 ILL.add_child(KVTree("Chicago", 2.7))
 
 treemap(update_node, SAMPLEKV)
 
 
 def print_tree(tree):
+    '''prints the tree'''
     print(f"Key: {tree.key}, Value: {tree.value}")
     for child in tree.children:
         print_tree(child)
@@ -120,7 +125,7 @@ class DTree:
         the outcome based on the observations.'''
         if self.variable is None:
             return self.outcome
-        elif observations[self.variable] <= self.threshold:
+        if observations[self.variable] <= self.threshold:
             return self.lessequal.find_outcome(observations)
         else:
             return self.greater.find_outcome(observations)
@@ -131,7 +136,7 @@ class DTree:
         def helper(node, seen):
             if node.variable is None:
                 return True
-            elif node.variable in seen:
+            if node.variable in seen:
                 return False
             else:
                 seen.add(node.variable)
