@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-
 '''pa6 functions for homework 6'''
 
 
@@ -21,9 +20,9 @@ def make_change(total):
     backtrack([], total, 0)
     return combinations
 
-total_amount = 10
-result = make_change(total_amount)
-print("Distinct combinations of coins for", total_amount, "cents:", result)
+CHANGE = 10
+RESULT = make_change(CHANGE)
+print("Distinct combinations of coins for", CHANGE, "cents:", RESULT)
 
 
 def dict_filter(func, dictionary):
@@ -40,8 +39,8 @@ def checker(name, abbrev):
 
 example = {"Illinois": "IL", "Pennsylvania": "PA", "Indiana": "IN"}
 
-result = dict_filter(checker, example)
-print(result)
+RESULT2 = dict_filter(checker, example)
+print(RESULT2)
 
 
 class KVTree:
@@ -65,16 +64,16 @@ def update_node(key, value):
     return key.upper(), value * 1000000
 
 
-samplekv = KVTree("us", 4.6)
-pa = KVTree("pa", 1.9)
-samplekv.add_child(pa)
-pa.add_child(KVTree("Pittsburgh", 0.3))
-pa.add_child(KVTree("Philadelphia", 1.6))
-il = KVTree("il", 2.7)
+SAMPLEKV = KVTree("us", 4.6)
+PENN = KVTree("pa", 1.9)
+SAMPLEKV.add_child(pa)
+PENN.add_child(KVTree("Pittsburgh", 0.3))
+PENN.add_child(KVTree("Philadelphia", 1.6))
+ILL = KVTree("il", 2.7)
 samplekv.add_child(il)
-il.add_child(KVTree("Chicago", 2.7))
+ILL.add_child(KVTree("Chicago", 2.7))
 
-treemap(update_node, samplekv)
+treemap(update_node, SAMPLEKV)
 
 
 def print_tree(tree):
@@ -82,7 +81,7 @@ def print_tree(tree):
     for child in tree.children:
         print_tree(child)
 
-print_tree(samplekv)
+print_tree(SAMPLEKV)
 
 
 class DTree:
@@ -131,20 +130,20 @@ class DTree:
         return helper(self, set())
 
 
-tree1 = DTree(0, 66, DTree(None, None, None, None, "walk"),
+TREE1 = DTree(0, 66, DTree(None, None, None, None, "walk"),
               DTree(None, None, None, None, "stay home"), None)
 
-tree2 = DTree(0, 66,
+TREE2 = DTree(0, 66,
               DTree(2, 10,
                     DTree(None, None, None, None, "walk"),
                     DTree(None, None, None, None, "stay home"), None),
               DTree(None, None, None, None, "stay home"), None)
 
-print("Minimum tuple size for tree1:", tree1.tuple_atleast())
-print("Minimum tuple size for tree2:", tree2.tuple_atleast())
+print("Minimum tuple size for tree1:", TREE1.tuple_atleast())
+print("Minimum tuple size for tree2:", TREE2.tuple_atleast())
 
-observations = (60, 50, 8)
-print("Outcome for observations in tree2:", tree2.find_outcome(observations))
+OBSERVATIONS = (60, 50, 8)
+print("Outcome for observations in tree2:", TREE2.find_outcome(OBSERVATIONS))
 
-print("No repeats in tree1:", tree1.no_repeats())
-print("No repeats in tree2:", tree2.no_repeats())
+print("No repeats in tree1:", TREE1.no_repeats())
+print("No repeats in tree2:", TREE2.no_repeats())
