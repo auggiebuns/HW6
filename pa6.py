@@ -3,7 +3,8 @@
 
 
 def make_change(total):
-    '''Find all distinct combinations of coins that add up to the total amount.'''
+    '''Find all distinct combinations of coins that 
+    add up to the total amount.'''
     denominations = [1, 5, 10, 25, 100]
     combinations = []
 
@@ -19,6 +20,7 @@ def make_change(total):
                 curr_combination.pop()
     backtrack([], total, 0)
     return combinations
+
 
 CHANGE = 10
 RESULT = make_change(CHANGE)
@@ -36,6 +38,7 @@ def dict_filter(func, dictionary):
 
 def checker(name, abbrev):
     return abbrev[0] == "I" and name[1] == "l"
+
 
 example = {"Illinois": "IL", "Pennsylvania": "PA", "Indiana": "IN"}
 
@@ -81,15 +84,19 @@ def print_tree(tree):
     for child in tree.children:
         print_tree(child)
 
+
 print_tree(SAMPLEKV)
 
 
 class DTree:
-    def __init__(self, variable, threshold, lessequal, greater, outcome):
+    def __init__(self, variable, threshold, lessequal, 
+                 greater, outcome):
         if (variable is not None and threshold is not None and 
-            lessequal is not None and greater is not None and outcome is None) or \
+            lessequal is not None and greater 
+            is not None and outcome is None) or \
            (variable is None and threshold is None and 
-            lessequal is None and greater is None and outcome is not None):
+            lessequal is None and greater 
+            is None and outcome is not None):
             self.variable = variable
             self.threshold = threshold
             self.lessequal = lessequal
@@ -100,15 +107,18 @@ class DTree:
 
 
     def tuple_atleast(self):
-        '''Analyze the tree and determine the minimum size of tuples needed.'''
+        '''Analyze the tree and determine the 
+        minimum size of tuples needed.'''
         if self.variable is not None:
-            return max(self.variable + 1, self.lessequal.tuple_atleast(), self.greater.tuple_atleast())
+            return max(self.variable + 1, 
+                       self.lessequal.tuple_atleast(), self.greater.tuple_atleast())
         else:
             return 0
 
 
     def find_outcome(self, observations):
-        '''Navigate through the tree to find the outcome based on the observations.'''
+        '''Navigate through the tree to find 
+        the outcome based on the observations.'''
         if self.variable is None:
             return self.outcome
         elif observations[self.variable] <= self.threshold:
@@ -118,7 +128,8 @@ class DTree:
 
 
     def no_repeats(self):
-        '''Analyze the tree and determine if there are no repeats.'''
+        '''Analyze the tree and determine 
+        if there are no repeats.'''
         def helper(node, seen):
             if node.variable is None:
                 return True
@@ -126,7 +137,8 @@ class DTree:
                 return False
             else:
                 seen.add(node.variable)
-                return helper(node.lessequal, seen) and helper(node.greater, seen)
+                return helper(node.lessequal, 
+                              seen) and helper(node.greater, seen)
         return helper(self, set())
 
 
